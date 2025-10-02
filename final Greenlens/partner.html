@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>Support GreenLens</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      :root {
+        --primary-green: #2d5016;
+        --forest-green: #3a7f3a;
+        --ocean-blue: #0077be;
+        --light-bg: #f0f7f4;
+        --white: #fff;
+        --dark-text: #1a3a1a;
+      }
+      body {
+        background: linear-gradient(135deg, var(--light-bg) 0%, #e8f5e9 100%);
+        color: var(--dark-text);
+      }
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 1.5rem 8%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        box-shadow: 0 4px 20px rgba(45, 80, 22, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .header:hover {
+        box-shadow: 0 6px 30px rgba(45, 80, 22, 0.15);
+      }
+
+      .logo {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-green);
+        text-decoration: none;
+        letter-spacing: 2px;
+        transition: transform 0.3s ease;
+      }
+
+      .logo:hover {
+        transform: scale(1.05);
+      }
+
+      .log {
+        color: var(--forest-green);
+        font-weight: 800;
+      }
+
+      .navbar {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .navbar a {
+        font-size: 1rem;
+        color: var(--dark-text);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      .navbar a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          var(--forest-green),
+          var(--ocean-blue)
+        );
+        transition: width 0.3s ease;
+      }
+
+      .navbar a:hover::after,
+      .navbar a.active::after {
+        width: 80%;
+      }
+
+      .navbar a:hover,
+      .navbar a.active {
+        color: var(--forest-green);
+      }
+
+      /* Header */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 1.2rem 8%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        box-shadow: 0 4px 20px rgba(45, 80, 22, 0.1);
+      }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-green);
+        text-decoration: none;
+      }
+      .log {
+        color: var(--forest-green);
+      }
+      .back-btn {
+        padding: 0.6rem 1.3rem;
+        background: linear-gradient(
+          135deg,
+          var(--forest-green),
+          var(--ocean-blue)
+        );
+        color: #fff;
+        border-radius: 25px;
+        text-decoration: none;
+      }
+      /* Hero */
+      .hero {
+        text-align: center;
+        padding: 8rem 8% 3rem;
+      }
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--ocean-blue)
+        );
+        /* -webkit-background-clip: text; */
+        -webkit-text-fill-color: transparent;
+      }
+      .hero p {
+        font-size: 1.1rem;
+        max-width: 700px;
+        margin: auto;
+        opacity: 0.9;
+      }
+      /* Section titles */
+      section h2 {
+        font-size: 2.2rem;
+        color: var(--primary-green);
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+      /* Funding */
+      .funding-section {
+        padding: 3rem 8%;
+        background: #fff;
+        margin: 2rem 8%;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(45, 80, 22, 0.1);
+      }
+      .funding-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      .funding-card {
+        background: linear-gradient(
+          135deg,
+          rgba(58, 127, 58, 0.05),
+          rgba(0, 119, 190, 0.05)
+        );
+        padding: 1.5rem;
+        border-radius: 15px;
+        border: 2px solid var(--forest-green);
+        text-align: center;
+      }
+      .funding-card h3 {
+        color: var(--ocean-blue);
+        margin-bottom: 0.5rem;
+      }
+      .amount {
+        font-size: 1.8rem;
+        color: var(--forest-green);
+        font-weight: 700;
+        margin: 0.5rem 0;
+      }
+      .funding-card ul {
+        list-style: none;
+        text-align: left;
+        margin: 1rem 0;
+      }
+      .funding-card ul li {
+        padding: 0.3rem 0;
+        position: relative;
+        padding-left: 1.3rem;
+      }
+      .funding-card ul li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--forest-green);
+      }
+      .invest-btn {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        margin-top: 0.8rem;
+        background: linear-gradient(
+          135deg,
+          var(--forest-green),
+          var(--ocean-blue)
+        );
+        color: #fff;
+        border-radius: 30px;
+        text-decoration: none;
+      }
+      /* Merchandise */
+      .merch-section {
+        padding: 3rem 8%;
+      }
+      .merch-subtitle {
+        text-align: center;
+        margin-bottom: 2rem;
+        opacity: 0.8;
+      }
+      .merch-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+      .merch-card {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(45, 80, 22, 0.1);
+        overflow: hidden;
+        transition: 0.3s;
+      }
+      .merch-card:hover {
+        transform: translateY(-8px);
+      }
+      .merch-info {
+        padding: 1.5rem;
+      }
+      .merch-info h3 {
+        color: var(--primary-green);
+      }
+      .price {
+        color: var(--forest-green);
+        font-weight: 700;
+        margin: 0.8rem 0;
+      }
+      
+      .social-media {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .social-media a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(
+          135deg,
+          var(--forest-green),
+          var(--ocean-blue)
+        );
+        border-radius: 50%;
+        color: var(--white);
+        font-size: 1.2rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .social-media a:hover {
+        transform: translateY(-5px) scale(1.1);
+        box-shadow: 0 8px 20px rgba(58, 127, 58, 0.4);
+      }
+
+      .buy-btn {
+        padding: 0.7rem;
+        width: 100%;
+        background: linear-gradient(
+          135deg,
+          var(--forest-green),
+          var(--ocean-blue)
+        );
+        border: none;
+        color: #fff;
+        border-radius: 25px;
+        cursor: pointer;
+      }
+      /* Partner Form */
+      .partner-section {
+        padding: 3rem 8%;
+        margin: 2rem 8%;
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(45, 80, 22, 0.1);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+      .partner-left {
+        flex: 1;
+        min-width: 280px;
+        position: absolute;
+      }
+      .pic {
+        width: 100%;
+      }
+      .partner-left ul {
+        list-style: disc;
+        margin-left: 1.5rem;
+      }
+      .partner-right {
+        flex: 1;
+        min-width: 280px;
+      }
+      .form-group {
+        margin-bottom: 1rem;
+      }
+      label {
+        font-weight: 600;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 0.6rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+      button[type="submit"] {
+        background: var(--forest-green);
+        color: #fff;
+        padding: 0.8rem;
+        width: 100%;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      button[type="submit"]:hover {
+        background: #1b5e20;
+      }
+      .thank-you {
+        display: none;
+        color: green;
+        font-weight: bold;
+        margin-top: 0.5rem;
+      }
+      /* Footer */
+      .footer {
+        background: var(--primary-green);
+        color: #fff;
+        text-align: center;
+        padding: 2rem;
+      }
+      @media (max-width: 768px) {
+        .funding-section,
+        .partner-section {
+          margin: 2rem 5%;
+          padding: 2rem 5%;
+        }
+      }
+      h3 .po{
+        font-size: 30px;
+      }
+     p .pp{
+        font: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <a href="index.html" class="logo">GREEN<span class="log">LENS</span></a>
+      <nav class="navbar">
+        <a href="index.html" class="active">Home</a>
+        <a href="Airpollution.html">Air Quality Awareness</a>
+        <a href="wildfire.html">Wildfire Monitor</a>
+        <a href="ecoAction.html">Raise Concern</a>
+        <a href="partner.html">Partner With Us</a>
+      </nav>
+      <div class="social-media">
+        <a href="#"><i class="bx bxl-twitter"></i></a>
+        <a href="#"><i class="bx bxl-facebook"></i></a>
+        <a href="#"><i class="bx bxl-instagram-alt"></i></a>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <h3 class="po">Why Partner With Us?</h3>
+      <br>
+      <p class="pp">
+        Help us accelerate climate action through technology, community
+        engagement, and sustainable merchandise.
+     Impactful environmental initiatives, Strengthen CSR
+    Collaborate with trusted networks,
+        Shape a sustainable future</h3>
+    
+    </section>
+    <br /><br />
+
+    <!-- Funding -->
+    <section class="funding-section">
+      <h2>Donate to Greenlens</h2>
+      <div class="funding-options">
+        <div class="funding-card">
+          <h3>Seed Supporter</h3>
+          <div class="amount">$1,000</div>
+          <ul>
+            <li>Recognition</li>
+            <li>Quarterly reports</li>
+            <li>Merch pack</li>
+          </ul>
+          <a href="#" class="invest-btn">Donate Now</a>
+        </div>
+        <div class="funding-card">
+          <h3>Growth Partner</h3>
+          <div class="amount">$5,000</div>
+          <ul>
+            <li>All Seed benefits</li>
+            <li>Monthly calls</li>
+            <li>Beta access</li>
+          </ul>
+          <a href="#" class="invest-btn">Donate Now</a>
+        </div>
+        <div class="funding-card">
+          <h3>Impact Investor</h3>
+          <div class="amount">$10,000+</div>
+          <ul>
+            <li>All Growth benefits</li>
+            <li>Equity options</li>
+            <li>Founder access</li>
+          </ul>
+          <a href="#" class="invest-btn">Donate Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Merchandise -->
+    <section class="merch-section">
+      <h2>Official Merchandise</h2>
+      <p class="merch-subtitle">Every purchase supports our mission.</p>
+      <div class="merch-grid">
+        <div class="merch-card">
+          <div class="merch-info">
+            <h3>T-Shirt</h3>
+            <p>Organic cotton, GreenLens logo</p>
+            <img
+              class="pic"
+              src="Gemini_Generated_Image_25pp8625pp8625pp.png"
+              alt=""
+            />
+            <div class="price">$25</div>
+            <button class="buy-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="merch-card">
+          <div class="merch-info">
+            <h3>Cap</h3>
+            <p>Adjustable eco cap</p>
+            <img
+              class="pic"
+              src="Gemini_Generated_Image_i5ggkji5ggkji5gg.png"
+              alt=""
+            />
+            <div class="price">$20</div>
+            <button class="buy-btn">Add to Cart</button>
+          </div>
+        </div>
+        <div class="merch-card">
+          <div class="merch-info">
+            <h3>Hoodie</h3>
+            <img
+              class="pic"
+              src="Gemini_Generated_Image_6kgrgm6kgrgm6kgr.png"
+              alt=""
+            />
+            <p>Eco fleece hoodie</p>
+            <div class="price">$45</div>
+            <button class="buy-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partner Form -->
+    <section class="partner-section">
+      <div class="partner-right">
+        <h2>Support Us</h2>
+        <form id="supportForm">
+          <div class="form-group">
+            <label>Full Name</label><input type="text" required />
+          </div>
+          <div class="form-group">
+            <label>Organization Type</label>
+            <select required>
+              <option value="">-- Select --</option>
+              <option>NGO</option>
+              <option>Volunteer</option>
+              <option>Government</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Email</label><input type="email" required />
+          </div>
+          <div class="form-group">
+            <label>Payment Method</label>
+            <select required>
+              <option value="">-- Select --</option>
+              <option>Credit Card</option>
+              <option>Mobile Money</option>
+              <option>PayPal</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message / Platform</label><textarea></textarea>
+          </div>
+          <button type="submit">Submit</button>
+          <div id="thankYouMsg" class="thank-you">
+            Thank you for partnering with us!
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>
+        &copy; 2025 GreenLens. Accelerating Climate Action Through Innovation.
+      </p>
+      <p style="margin-top: 1rem; opacity: 0.8">
+        Contact: aksantibahizireactif@gmail.com
+      </p>
+    </footer>
+
+    <script>
+      const form = document.getElementById("supportForm");
+      const thankYouMsg = document.getElementById("thankYouMsg");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        thankYouMsg.style.display = "block";
+        form.reset();
+      });
+    </script>
+  </body>
+</html>
